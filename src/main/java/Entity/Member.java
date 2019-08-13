@@ -4,23 +4,27 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "Members")
 public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "Member_Id", nullable = false)
     private Integer id;
     private String login;
     private String password;
-    @OneToMany
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     private Set<Topic> topics;
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
+    private Set<Record> records;
 
-    public Member(String login, String password) {
-        this.login = login;
-        this.password = password;
+
+    public Member() {
     }
 
-    public Member(){}
+    public Member(String login, String password, Set<Topic> topics, Set<Record> records) {
+        this.login = login;
+        this.password = password;
+        this.topics = topics;
+        this.records = records;
+    }
 
     public Integer getId() {
         return id;
@@ -44,5 +48,21 @@ public class Member {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(Set<Topic> topics) {
+        this.topics = topics;
+    }
+
+    public Set<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(Set<Record> records) {
+        this.records = records;
     }
 }

@@ -8,6 +8,7 @@ public class Record {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
+    @Lob()
     private String content;
     private LocalDate date;
     @ManyToOne
