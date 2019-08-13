@@ -4,7 +4,9 @@
              version="2.0">
     <persistence-unit name="sample">
         <jta-data-source>java:jboss/datasources/MSSQLDS</jta-data-source>
-<!--        <class>Entity.Person</class>-->
+        <class>Entity.Member</class>
+        <class>Entity.Topic</class>
+
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
